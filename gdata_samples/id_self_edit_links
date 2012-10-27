@@ -1,0 +1,13 @@
+After event time had been changed from 10:00am to 11:00am:
+
+
+id:   http://www.google.com/calendar/feeds/artery.school.test%40gmail.com/events/eqhoc9gto6khoj1fbiuo59u51k_20100131T070000Z
+self: http://www.google.com/calendar/feeds/artery.school.test%40gmail.com/private/full/eqhoc9gto6khoj1fbiuo59u51k_20100131T070000Z
+edit: http://www.google.com/calendar/feeds/artery.school.test%40gmail.com/private/full/eqhoc9gto6khoj1fbiuo59u51k_20100131T070000Z
+
+
+id:   http://www.google.com/calendar/feeds/artery.school.test%40gmail.com/events/eqhoc9gto6khoj1fbiuo59u51k_20100131T070000Z
+self: http://www.google.com/calendar/feeds/artery.school.test%40gmail.com/private/full/eqhoc9gto6khoj1fbiuo59u51k_20100131T070000Z
+edit: http://www.google.com/calendar/feeds/artery.school.test%40gmail.com/private/full/eqhoc9gto6khoj1fbiuo59u51k_20100131T070000Z
+
+id, self, edit remained the same

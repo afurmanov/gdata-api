@@ -1,0 +1,22 @@
+* requires management
+
+* Better DSL for specifying elements:
+  Atom's #elements class method should accept convention adopted by Google: 
+   elements :element - generates 'element=', 'element'
+   elements :element => 'elementName?' - generate 'element=', 'element', 'element?'
+   elements :elements => 'elementName*' - genrates elements behaving like an Array
+
+* Updating fields inline in xml is probably bad idea - Nokogiri is not that fast
+
+* Nokogiri issue: adding gd:node to atom:node creates atom:gd:node (why namespace is inherited when it is explicitly specified?)
+
+- feed.event, event.who returning arrays looks really strange in code
+
+- Implement #feed.get(event_id) or #feed.load(event_id), Entry#delete!
+
+- AuthSub authentication
+
+- Creating/Removing feeds
+
+- Mmore tests
+

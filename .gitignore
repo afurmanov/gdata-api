@@ -1,0 +1,12 @@
+log
+pkg
+Manifest
+doc
+GPATH
+GRTAGS
+GSYMS
+GTAGS
+dump.rdb
+logs/*
+TAGS
+out
