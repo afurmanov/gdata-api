@@ -1,25 +1,12 @@
-require 'blankslate'
 require 'namespaces'
 require 'gdata/atom/xml_namespaces'
 
 module GData
   module Atom
-    Base = Class.new(Object.const_defined?(:Debugger) ? Object : BlankSlate) do
+    Base = Class.new(Object) do#Class.new(BasicObject) do
       extend XmlNamespaces
       include Namespaces
-      
-      if self < BlankSlate #these methods needed either for code below or used by testing library
-        reveal(:send) 
-        reveal(:instance_variable_get) 
-        reveal(:instance_variable_set) 
-        reveal(:class)
-        reveal(:is_a?)
-        reveal(:respond_to?)
-        reveal(:pretty_print) if Object.const_defined?(:Debugger)
-        reveal(:inspect)
-        reveal(:to_s)
-      end
-      
+
       def from_hash(hash)
         all_field_infos = self.class.all_field_infos
         hash.each do |field, value|
@@ -44,9 +31,9 @@ module GData
           value = send(field)
           next if !value || value.respond_to?(:empty?) && value.empty?
           case value
-            when Base: value = value.to_hash
-            when Array: value = value.collect {|v| v.to_hash}
-            when DateTime: value = value.to_s
+            when Base; value = value.to_hash
+            when Array; value = value.collect {|v| v.to_hash}
+            when DateTime; value = value.to_s
           end
           result[field] = value
         end
@@ -171,9 +158,9 @@ module GData
       def elements(*elements)
         elements.each do |field|
           case field
-          when String:
+          when String;
               generate_field_accessor(field, String)
-          when Hash:
+          when Hash;
               field.each {|f, klass| generate_field_accessor(f, klass)}
           end
         end
@@ -181,7 +168,7 @@ module GData
       
       def convert_to_xml(value)
         case value
-        when Time:
+        when Time;
             value = value.iso8601
         end
         value

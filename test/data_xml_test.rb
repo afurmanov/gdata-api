@@ -11,8 +11,8 @@ class GDataXmlTest < Test::Unit::TestCase
   
   context "Klass derived from Atom::Base" do
     setup do
-      Klass = GDataXmlTest.generate_base_descendant_class
-      ItemKlass = GDataXmlTest.generate_base_descendant_class
+      self.class.const_set(:Klass, GDataXmlTest.generate_base_descendant_class)
+      self.class.const_set(:ItemKlass, GDataXmlTest.generate_base_descendant_class)
     end
     
     teardown do
@@ -177,6 +177,6 @@ class GDataXmlTest < Test::Unit::TestCase
         assert_equal(@instance.item.when, new_instance.item.when)
         assert_equal(now, new_instance.item.when)
       end
-    end
+     end
   end
 end

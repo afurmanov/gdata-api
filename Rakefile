@@ -18,11 +18,10 @@ begin
   Jeweler::Tasks.new do |s|
     s.name = "gdata-api"
     s.summary = "Google Data API expressed in Ruby"
-    s.email = "fkocherga@gmail.com"
-    s.homepage = "http://github.com/fkocherga/gdata-api"
+    s.email = "aleksandr.furmanov@gmail.com"
+    s.homepage = "http://github.com/afurmanov/gdata-api"
     s.authors = ["Fedor Kocherga"]
     s.test_files = test_files
-    s.add_dependency 'blankslate', '>= 2.1.2.2'
     s.add_dependency 'nokogiri', '>= 1.3.3'
     s.add_dependency 'tagged_logger'
     s.add_development_dependency 'thoughtbot-shoulda'
