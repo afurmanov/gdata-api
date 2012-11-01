@@ -29,8 +29,10 @@ module GData
     def self.feed_entries(options = nil, query = nil)
       query = QueryParams.new unless query #so no check for nil needed further in call stack
       query.validate! if query
+      debugger
       url = feed_url(options || {}, query)
       Cacher.entries(url) do
+        debugger
         logger.debug "Entries for query '#{query}' weren't cached, requesting them..."
         feed_xml =  Request.new(url).get(atom_header)
         feed_class.from_xml(feed_xml).entry
@@ -43,6 +45,7 @@ module GData
     end
     
     def self.authenticate(password)
+      debugger
       Cacher.deauthenticate(user_id)
       request = Request.new(CLIENT_LOGIN_URL)
       source = "fkocherga-gdata-1.0" #just library name and version

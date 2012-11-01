@@ -3,7 +3,7 @@ require "bundler"
 Bundler.setup
 
 require 'test/unit'
-require 'shoulda'
+require 'rspec'
 require 'logger'
 require 'tagged_logger'
 require 'rr'
@@ -25,12 +25,6 @@ TaggedLogger.rules do |level, tag, what|
   info /.*/, :to => Logger.new(STDOUT)
   debug /(Base|Atom|Feed|Entry|Event)/, :to => Logger.new(open(File.join(log_path, 'atom.log'),"w"))
   debug GData::Request, :to => Logger.new(open(File.join(log_path, 'request.log'),"w"))
-end
-
-unless Object.const_defined?(:Debugger)
-  def debugger
-    puts "deb" + "ugger()..." #That strange + is for avoid hitting search results
-  end
 end
 
 GData::Cacher.init(Mongo::Connection.new.db("gdata"))

@@ -12,13 +12,13 @@ module GData
         raise StandardError, "Query parameter '#{param}' is not supported." unless @@params_descriptions.key? param
         description = @@params_descriptions[param]
         case description
-        when Array:
+        when Array;
             raise StandardError, "Param '#{param}' has to be one of '#{description}'"  unless description.include?(value)
-        when Class:
+        when Class;
             raise StandardError, "Param '#{param}' has to be instance of class '#{description}'"  unless value.is_a? description
-        when :boolean:
+        when :boolean;
             raise StandardError, "Param '#{param}' should be true or false." unless [true, false].include?(value)
-        when :date_or_time:
+        when :date_or_time;
             raise StandardError, "Param '#{param}' should be Date, Time or DateTime."  unless [Date,Time,DateTime].include?(value.class)
         end
       end
@@ -36,11 +36,11 @@ module GData
         param_value = value
         description = @@params_descriptions[param]
         case description
-        when :date_or_time:
+        when :date_or_time;
             case value
-            when Date:
+            when Date;
                 param_value = Time.local(value.year, value.month, value.day)
-            when DateTime:
+            when DateTime;
                 param_value = Time.parse(value.to_s)
             end
           param_value = param_value.iso8601

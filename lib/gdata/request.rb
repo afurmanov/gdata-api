@@ -27,6 +27,7 @@ module GData
     
     def get(header)
       result = process_request(:get, nil, header)
+      debugger
       while result.is_a?(Net::HTTPRedirection)
         if result.is_a?(Net::HTTPNotModified)
           logger.debug "    304:not modified, trying to load cached data"
@@ -53,6 +54,7 @@ module GData
       logger.debug( "#{verb.to_s.upcase}: #{@query_url}")
       header = auth_header(header)
       result = nil
+      debugger
       location = UriUtils::merge_query(@query_url, 'gsessionid' => Cacher.gsessions(header.user_id))
       result = @http_object.start do |h| 
         logger.debug "    sending to '#{location}'..."
@@ -63,6 +65,7 @@ module GData
         : h.send(verb, location, header)
       end
 
+      debugger
       unless [Net::HTTPSuccess, Net::HTTPRedirection].any? { |k| result.is_a?(k)}
         logger.debug "    #{result} Body:\n#{result.body}"
         raise StandardError.new("HTTP #{verb.to_s.upcase} failed.\n #{result.body}")

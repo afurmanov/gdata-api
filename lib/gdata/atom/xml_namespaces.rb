@@ -7,12 +7,10 @@ module GData
       def xml_namespaces
         return @xml_namespaces if @xml_namespaces
         @xml_namespaces = {}
-        klass = self
-        loop do
-          @xml_namespaces.merge! klass.namespaces[-1]::XML_NAMESPACE
-          klass = klass.superclass
-          break if klass > Base
-        end
+        ancestors = self.ancestors.select {|a| a.class == Class}
+        ancestors -= [Object, Object.superclass]
+        namespaces = ancestors.map(&:namespaces).flatten.uniq
+        namespaces.each { |nm|  @xml_namespaces.merge! nm::XML_NAMESPACE }
         @xml_namespaces
       end
       
